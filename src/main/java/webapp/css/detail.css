@@ -1,0 +1,52 @@
+*{margin:0;padding:0;}
+body{text-align:left;color:#252525;font-family:"\5B8B\4F53","sans-serif";font-size:12px;}
+a{text-decoration:none;color:#404040;}
+img{vertical-align:top;}
+
+
+
+/* 主体部分 开始*/
+.clearfix:after{visibility:hidden;content:".";overflow:hidden;height:0;clear:both;display:block;}
+.clearfix,.clearfix:after{}
+.post_area{width:1200px;margin:0 auto;height:200px;}
+/* 新闻导航和搜索框 开始*/
+.post_crumb{float:left;width:840px;margin:40px 0 30px;font:14px/1 "Sim sun";}
+/* 新闻导航和搜索框 结束*/
+/* 新闻主体 开始*/
+.post_content_main{float:left;width:840px;padding-bottom:60px;}
+.post_content_main h1{font:bold 36px/1 "Microsoft Yahei";color:#404040;}
+.post_time_source{margin-top:20px;font:12px/1 Arial, "Sim sun";color:#888;}
+.post_time_source a{color:#888;}
+.post_body{position:relative;padding-left:180px;margin-top:40px;}
+.post_topshare_wrap{width:180px;margin-left:-420px;position:absolute;left:50%;top:0;}
+.post_topshare_wrap_abs{position:absolute;margin-left:-420px;top:auto;bottom:0;}
+.post_tie_top{overflow:hidden;margin-top:20px;padding-bottom:10px;}
+.post_icon_tie{display:block;float:left;width:30px;height:28px;background:url(../images/comment.png) no-repeat -8px -9px;}
+.post_cnum_tie{display:block;float:left;font:20px/24px Georgia;color:#f33;}
+.post_topshare{position:relative;}
+.post_topshare .post_share{position:relative;}
+.post_topshare .post_share li{padding:12px 0;overflow:hidden;width:120px;border-top:1px solid #e5e5e5;font:14px/28px "Microsoft Yahei";color:#888;display:block;}
+.post_topshare .post_share li a{display:block;position:relative;color:#888;text-decoration:none;}
+.post_topshare .post_share li i{float:left;position:relative;overflow:hidden;width:40px;height:28px;margin-right:13px;background:url(../images/sprite0613v2.png) no-repeat;border-radius:4px;}
+/* 图片定位 开始*/
+.post_topshare .post_share .share_yixin i{background-position:0px -50px;}
+.post_topshare .post_share .share_weixin i{background-position:-80px -50px;}
+.post_topshare .post_share .share_qzone i{background-position:-120px -50px;}
+.post_topshare .post_share .share_weibo i{background-position:-160px -50px;}
+.post_topshare .post_share .share_more i{background-position:-280px -50px;}
+/* 图片定位 结束*/
+/* 新闻文字内容 开始*/
+#endText{width:580px;margin-right:10px;overflow:hidden;text-align:justify;clear:both;font-size:14px;line-height:24px;padding-bottom:20px;word-wrap:break-word;}
+#endText{width:auto;margin:0;font:18px/32px "Microsoft Yahei";color:#404040;}
+#endText > p{font:18px/32px "Microsoft Yahei";color:#404040;text-indent:2em;margin:32px 0 0;}
+#endText .en-source{float:right;font-size:12px;line-height:13px;padding:6px 0;}
+#endText .en-source{font-family:"Sim sun";margin-top:24px;}
+.cDGray, a.cDGray:visited, .cDGray a, .cDGray a:visited {color: #888888;}
+.left{float:left;}
+#endText a{color:#0f6b99;}
+#endText a{text-decoration:underline;}
+#endText .icon{margin-left:2px;border:0;}
+#endText .ep-editor{float:right;white-space:nowrap;margin-left:25px;}
+/* 新闻文字内容 结束*/
+/* 新闻主体 结束*/
+/* 主体部分 结束*/
