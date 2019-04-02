@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数据可视化</title>
+    <link rel="stylesheet" href="assets/amazeui1.css" />
+    <link rel="stylesheet" href="assets/common.min.css" />
+    <link rel="stylesheet" href="assets/index.min.css" />
+    <script src="assets/js/jquery-2.1.0.js" charset="utf-8"></script>
+    <script src="assets/js/amazeui.js" charset="utf-8"></script>
+    <script src="assets/js/common.js" charset="utf-8"></script>
+    <script src="assets/js/echarts.min.js"></script>
+</head>
+<body>
+<div class="layout">
+    <!--===========layout-header================-->
+    <div class="layout-header am-hide-sm-only">
+        <!--topbar start-->
+        <div class="topbar">
+            <div class="container">
+                <div class="am-g">
+                    <div class="am-u-md-3">
+                        <div class="topbar-left">
+                            <i class="am-icon-globe"></i>
+                            <div class="am-dropdown" data-am-dropdown>
+                                <button class="am-btn am-btn-primary am-dropdown-toggle" data-am-dropdown-toggle>Language <span class="am-icon-caret-down"></span></button>
+                                <ul class="am-dropdown-content">
+                                    <li><a href="#">English</a></li>
+                                    <li class="am-divider"></li>
+                                    <li><a href="#">Chinese</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-u-md-9">
+                        <div class="topbar-right am-text-right am-fr">
+                            数据可视化
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--topbar end-->
+
+        <div class="header-box" data-am-sticky>
+            <!--nav start-->
+            <div class="nav-contain">
+                <div class="nav-inner">
+                    <ul class="am-nav am-nav-pills am-nav-justify">
+                        <li class=""><a href="location.html">地域分布</a></li>
+                        <li><a href="location.html">终端设备</a></li>
+                        <li><a href="location.html">媒体分析</a></li>
+                        <li><a href="location.html">渠道分析</a></li>
+                        <li><a href="location.html">关键字分析</a></li>
+                        <li><a href="location.html">广告位类型分析</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!--nav end-->
+        </div>
+    </div>
+    <!--===========layout-container================-->
+    <div class="layout-container">
+        <div class="index-page" style="width:1000px;margin: 0 auto;">
+            图表展示
+            <div id="test" style="width: 900px;height:800px;"></div>
+        </div>
+    </div>
+
+
+</div>
+<script type="text/javascript">
+
+    $(function(){
+        console.log("jquery is working")
+
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('test'));
+
+    $.ajax({
+        url: '/FinalDesign/location',
+        type: 'post',
+        async: true,
+        dataType: 'json',
+        success: function (result) {
+            console.log(result);
+
+            myChart.setOption({
+                backgroundColor: '#2c343c',
+
+                title: {
+                    text: '地域分布 Pie',
+                    left: 'center',
+                    top: 20,
+                    textStyle: {
+                        color: '#ccc'
+                    }
+                },
+
+                tooltip : {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                },
+
+                visualMap: {
+                    show: false,
+                    min: 80,
+                    max: 600,
+                    inRange: {
+                        colorLightness: [0, 1]
+                    }
+                },
+                series : [
+                    {
+                        name:'访问来源',
+                        type:'pie',
+                        radius : '80%',
+                        center: ['50%', '50%'],
+                        data:result.sort(function (a, b) { return a.value - b.value; }),
+                        roseType: 'radius',
+                        label: {
+                            normal: {
+                                textStyle: {
+                                    color: 'rgba(255, 255, 255, 0.3)'
+                                }
+                            }
+                        },
+                        labelLine: {
+                            normal: {
+                                lineStyle: {
+                                    color: 'rgba(255, 255, 255, 0.3)'
+                                },
+                                smooth: 0.2,
+                                length: 10,
+                                length2: 20
+                            }
+                        },
+                        itemStyle: {
+                            normal: {
+                                color: '#c23531',
+                                shadowBlur: 200,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        },
+
+                        animationType: 'scale',
+                        animationEasing: 'elasticOut',
+                        animationDelay: function (idx) {
+                            return Math.random() * 200;
+                        }
+                    }
+                ]
+            });
+        }
+    })
+    })
+</script>
+</body>
+
+</html>
