@@ -8,4 +8,8 @@ public interface IdataVisdao {
 
     //查询地域情况
     public List<ZLocation> queryLocation();
+    //查询运营商情况
+    public List<ZLocation> queryIsp();
+    //查询运营商情况
+    public List<ZLocation> queryNetwork();
 }
