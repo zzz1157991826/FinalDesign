@@ -83,50 +83,82 @@
         var myChart = echarts.init(document.getElementById('test'));
 
         $.ajax({
-            url: '/FinalDesign/network',
+            url: '/FinalDesign/adspace',
             type: 'post',
             async: true,
             dataType: 'json',
             success: function (result) {
                 console.log(result);
-                var networkmanner = new Array();
+                var allDataName = new Array();
                 $.each(result,function(index,value){
-                    networkmanner[index] = value.name;
+                    allDataName[index] = value.name;
                 });
-                console.log(networkmanner);
+                console.log(allDataName);
+
                 myChart.setOption({
-                    title: {
-                        text: '联网方式分析',
-                        subtext: '统计数据',
-                        left: 'center'
+                    title : {
+                        text: '南丁格尔玫瑰图',
+                        subtext: '广告位类型',
+                        x:'center'
                     },
                     tooltip : {
                         trigger: 'item',
                         formatter: "{a} <br/>{b} : {c} ({d}%)"
                     },
                     legend: {
-                        // orient: 'vertical',
-                        // top: 'middle',
-                        bottom: 10,
-                        left: 'center',
-                        data: networkmanner
+                        x : 'center',
+                        y : 'bottom',
+                        data:allDataName
                     },
+                    toolbox: {
+                        show : true,
+                        feature : {
+                            mark : {show: true},
+                            dataView : {show: true, readOnly: false},
+                            magicType : {
+                                show: true,
+                                type: ['pie', 'funnel']
+                            },
+                            restore : {show: true},
+                            saveAsImage : {show: true}
+                        }
+                    },
+                    calculable : true,
                     series : [
                         {
-                            type: 'pie',
-                            radius : '65%',
-                            center: ['50%', '50%'],
-                            selectedMode: 'single',
-                            data:result,
-                            itemStyle: {
+                            name:'半径模式',
+                            type:'pie',
+                            radius : [20, 110],
+                            center : ['25%', '50%'],
+                            roseType : 'radius',
+                            label: {
+                                normal: {
+                                    show: false
+                                },
                                 emphasis: {
-                                    shadowBlur: 10,
-                                    shadowOffsetX: 0,
-                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                    show: true
                                 }
-                            }
+                            },
+                            lableLine: {
+                                normal: {
+                                    show: false
+                                },
+                                emphasis: {
+                                    show: true
+                                }
+                            },
+                            data:result
+                        },
+                        {
+                            name:'面积模式',
+                            type:'pie',
+                            radius : [30, 110],
+                            center : ['75%', '50%'],
+                            roseType : 'area',
+                            data:result
                         }
                     ]
+
                 });
             }
         })

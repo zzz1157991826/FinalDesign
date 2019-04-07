@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数据可视化</title>
+    <link rel="stylesheet" href="assets/amazeui1.css" />
+    <link rel="stylesheet" href="assets/common.min.css" />
+    <link rel="stylesheet" href="assets/index.min.css" />
+    <script src="assets/js/jquery-2.1.0.js" charset="utf-8"></script>
+    <script src="assets/js/amazeui.js" charset="utf-8"></script>
+    <script src="assets/js/common.js" charset="utf-8"></script>
+    <script src="assets/js/echarts.min.js"></script>
+    <script src="assets/js/echarts-wordcloud.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+<div class="layout">
+    <!--===========layout-header================-->
+    <div class="layout-header am-hide-sm-only">
+        <!--topbar start-->
+        <div class="topbar">
+            <div class="container">
+                <div class="am-g">
+                    <div class="am-u-md-3">
+                        <div class="topbar-left">
+                            <i class="am-icon-globe"></i>
+                            <div class="am-dropdown" data-am-dropdown>
+                                <button class="am-btn am-btn-primary am-dropdown-toggle" data-am-dropdown-toggle>Language <span class="am-icon-caret-down"></span></button>
+                                <ul class="am-dropdown-content">
+                                    <li><a href="#">English</a></li>
+                                    <li class="am-divider"></li>
+                                    <li><a href="#">Chinese</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-u-md-9">
+                        <div class="topbar-right am-text-right am-fr">
+                            数据可视化
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--topbar end-->
+
+        <div class="header-box" data-am-sticky>
+            <!--nav start-->
+            <div class="nav-contain">
+                <div class="nav-inner">
+                    <ul class="am-nav am-nav-pills am-nav-justify">
+                        <li class=""><a href="location.html">地域分布</a></li>
+                        <li><a href="isp.html">运营商分析</a></li>
+                        <li><a href="network.html">联网方式分析</a></li>
+                        <li><a href="appAndClient.html">app和设备类型分析</a></li>
+                        <li><a href="adspace.html">广告位类型分析</a></li>
+                        <li><a href="keywords.html">关键字</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!--nav end-->
+        </div>
+    </div>
+    <!--===========layout-container================-->
+    <div class="layout-container">
+        <div class="index-page" style="width:1000px;margin: 0 auto;">
+            图表展示
+            <div id="test" style="width: 900px;height:800px;"></div>
+        </div>
+    </div>
+
+
+</div>
+<script type="text/javascript">
+
+    $(function(){
+        console.log("jquery is working")
+
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('test'));
+        var option = {
+            tooltip: {},
+            series: [ {
+                type: 'wordCloud',
+                gridSize: 2,
+                sizeRange: [12, 50],
+                rotationRange: [-90, 90],
+                shape: 'pentagon',
+                width: 600,
+                height: 400,
+                drawOutOfBound: true,
+                textStyle: {
+                    normal: {
+                        color: function () {
+                            return 'rgb(' + [
+                                Math.round(Math.random() * 160),
+                                Math.round(Math.random() * 160),
+                                Math.round(Math.random() * 160)
+                            ].join(',') + ')';
+                        }
+                    },
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowColor: '#333'
+                    }
+                },
+                data: [
+
+                    {
+                        name: '华语剧场',
+                        value: 6181
+                    },
+                    {
+                        name: '近代',
+                        value: 4386
+                    },
+                    {
+                        name: '人物传记',
+                        value: 4055
+                    },
+                    {
+                        name: '内地剧场',
+                        value: 2467
+                    },
+                    {
+                        name: '主旋律',
+                        value: 2244
+                    },
+                    {
+                        name: '爱情',
+                        value: 1898
+                    },
+                    {
+                        name: '古装剧',
+                        value: 1484
+                    },
+                    {
+                        name: '励志',
+                        value: 1112
+                    },
+                    {
+                        name: '偶像剧',
+                        value: 965
+                    },
+                    {
+                        name: '青春剧',
+                        value: 847
+                    },
+                    {
+                        name: '都市',
+                        value: 582
+                    },
+                    {
+                        name: '怀旧',
+                        value: 555
+                    },
+                    {
+                        name: '少儿卡通',
+                        value: 550
+                    },
+                    {
+                        name: '动漫大全',
+                        value: 462
+                    },
+                    {
+                        name: '学历教育',
+                        value: 366
+                    },
+                    {
+                        name: '喜剧片',
+                        value: 360
+                    },
+                    {
+                        name: '2018年度票房爆款',
+                        value: 282
+                    },
+                    {
+                        name: '每日焦点',
+                        value: 273
+                    },
+                    {
+                        name: '悬疑剧',
+                        value: 265
+                    },
+                    {
+                        name: '军事',
+                        value: 10000
+                    },
+                    {
+                        name: '华语剧场',
+                        value: 6181
+                    },
+                    {
+                        name: '近代',
+                        value: 4386
+                    },
+                    {
+                        name: '人物传记',
+                        value: 4055
+                    },
+                    {
+                        name: '内地剧场',
+                        value: 2467
+                    },
+                    {
+                        name: '主旋律',
+                        value: 2244
+                    },
+                    {
+                        name: '爱情',
+                        value: 1898
+                    },
+                    {
+                        name: '古装剧',
+                        value: 1484
+                    },
+                    {
+                        name: '励志',
+                        value: 1112
+                    },
+                    {
+                        name: '偶像剧',
+                        value: 965
+                    },
+                    {
+                        name: '青春剧',
+                        value: 847
+                    },
+                    {
+                        name: '都市',
+                        value: 582
+                    },
+                    {
+                        name: '怀旧',
+                        value: 555
+                    },
+                    {
+                        name: '少儿卡通',
+                        value: 550
+                    },
+                    {
+                        name: '动漫大全',
+                        value: 462
+                    },
+                    {
+                        name: '学历教育',
+                        value: 366
+                    },
+                    {
+                        name: '喜剧片',
+                        value: 360
+                    },
+                    {
+                        name: '2018年度票房爆款',
+                        value: 282
+                    },
+                    {
+                        name: '每日焦点',
+                        value: 273
+                    },
+                    {
+                        name: '悬疑剧',
+                        value: 265
+                    }
+                ]
+            } ]
+        };
+
+        myChart.setOption(option);
+
+        window.onresize = myChart.resize;
+    })
+</script>
+</body>
+
+</html>
+
