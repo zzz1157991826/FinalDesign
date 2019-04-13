@@ -22,18 +22,19 @@ object KeywordsAppV2 {
     val text: RDD[String] = sc.textFile(inputPath)
 
     //                      lines.flatMap(_.split(" "))
-//    val words: RDD[String] = text.flatMap(_.split("|"))
+    val words: RDD[String] = text.flatMap(_.split("\\|"))
 //
 //    // 把每个单词生成一个一个的tuple
-//    val tuples = words.map((_, 1))
+    val tuples = words.map((_, 1))
 //
 //    // 以key(单词)进行分组
-//    val sumed = tuples.reduceByKey(_+_)
+    val sumed = tuples.reduceByKey(_+_)
 //
-//    val sorted = sumed.sortBy(x => x._2, false)
+    val sorted = sumed.sortBy(x => x._2, false)
 
 
 
-    println(text.collect.toBuffer)
+    println(sorted.collect.toBuffer)
+    sorted.saveAsTextFile("C:/keywords")
   }
 }

@@ -10,6 +10,7 @@
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <link rel="alternate icon" type="image/png" href="assets/i/favicon.png">
     <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
+    <script src="dataVis/assets/js/jquery-2.1.0.js" charset="utf-8"></script>
     <style>
         .header {
             text-align: center;
@@ -45,8 +46,8 @@
         <br>-->
 
         <form method="post" class="am-form">
-            <label for="email">用户名:</label>
-            <input type="email" name="" id="email" value="">
+            <label for="username">用户名:</label>
+            <input type="text" name="" id="username" value="">
             <br>
             <label for="password">密码:</label>
             <input type="password" name="" id="password" value="">
@@ -57,7 +58,7 @@
             </label>
             <br />
             <div class="am-cf">
-                <input type="submit" name="" value="登 录" class="am-btn am-btn-primary am-btn-sm am-fl">
+                <input id="login" type="button" name="" value="登 录" class="am-btn am-btn-primary am-btn-sm am-fl">
                 <input type="submit" name="" value="忘记密码 ^_^? " class="am-btn am-btn-default am-btn-sm am-fr">
             </div>
         </form>
@@ -65,5 +66,33 @@
         <p>© 2019 zzu</p>
     </div>
 </div>
+<script type="text/javascript">
+    $(function() {
+        console.log("jquery is working");
+    })
+    $("#login").click(function() {
+        var username=$("#username").val();
+        var password=$("#password").val();
+        console.log("username--->"+username);
+        console.log("password--->"+password);
+        $.ajax({
+            url : "login",
+            data : {
+                username : username,
+                password : password,
+            }, //传送给后台的dto
+            type : 'post',
+            success : function(data) {
+                console.log("data="+data);
+                if (data != null) {
+                    sessionStorage.setItem("phoneNumber",data);
+                    window.location.href="index.html";
+                } else {
+                    alert("用户名密码有误！登录失败！");
+                }
+            }
+        });
+    });
+</script>
 </body>
 </html>

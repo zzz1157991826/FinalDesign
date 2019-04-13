@@ -1,4 +1,6 @@
 (function(){
+	//获取用户的主键信息，并写入日志
+	var phoneNumber = sessionStorage.getItem("phoneNumber");
 	var CookieUtil = {
 			// get the cookie of the key is name
 			get: function(name) {
@@ -48,7 +50,7 @@
 	var tracker = {
 			// config
 			clientConfig: {
-				serverUrl: "http://hadoop2/1603.JPG",
+				serverUrl: "http://192.168.18.166/index.html",
 				sessionTimeout: 360, // 360s -> 6min
 				maxWaitTime: 3600, // 3600s -> 60min -> 1h
 				ver: "1"
@@ -58,6 +60,7 @@
 			
 			columns: {
 				// 发送到服务器的列名称
+				phoneNumber:"phoneNumber",
 				eventName: "en",
 				version: "ver",
 				platform: "pl",
@@ -267,16 +270,17 @@
 			 * 往data中添加发送到日志收集服务器的公用部分
 			 */
 			setCommonColumns: function(data) {
-				data[this.columns.version] = this.clientConfig.ver;
-				data[this.columns.platform] = "website";
-				data[this.columns.sdk] = "js";
-				data[this.columns.uuid] = this.getUuid(); // 设置用户id
-				data[this.columns.memberId] = this.getMemberId(); // 设置会员id
-				data[this.columns.sessionId] = this.getSid(); // 设置sid
-				data[this.columns.clientTime] = new Date().getTime(); // 设置客户端时间
-				data[this.columns.language] = window.navigator.language; // 设置浏览器语言
-				data[this.columns.userAgent] = window.navigator.userAgent; // 设置浏览器类型
-				data[this.columns.resolution] = screen.width + "*" + screen.height; // 设置浏览器分辨率
+				data[this.columns.phoneNumber] = phoneNumber;
+				// data[this.columns.version] = this.clientConfig.ver;
+				// data[this.columns.platform] = "website";
+				// data[this.columns.sdk] = "js";
+				// data[this.columns.uuid] = this.getUuid(); // 设置用户id
+				// data[this.columns.memberId] = this.getMemberId(); // 设置会员id
+				// data[this.columns.sessionId] = this.getSid(); // 设置sid
+				// data[this.columns.clientTime] = new Date().getTime(); // 设置客户端时间
+				// data[this.columns.language] = window.navigator.language; // 设置浏览器语言
+				// data[this.columns.userAgent] = window.navigator.userAgent; // 设置浏览器类型
+				// data[this.columns.resolution] = screen.width + "*" + screen.height; // 设置浏览器分辨率
 			},
 
 			/**
